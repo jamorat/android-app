@@ -49,4 +49,8 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    public void showScore(View v) {
+        System.out.println("button has been clicked");
+    }
 }

@@ -28,6 +28,7 @@ import java.util.Locale;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
+
     public MainActivity() {
 
     }
@@ -49,7 +50,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        populateScoreScreen();
+        populateScoreScreenFromIntent();
+        //populateScoreScreen();
 
     }
 
@@ -101,7 +103,6 @@ public class MainActivity extends AppCompatActivity {
 
 // Construct a date
         dt = new Date(ms);
-//        DateFormat dateFormat = new SimpleDateFormat(string: "dd/mm/yyyy hh:mm:ss");
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss", Locale.ENGLISH);
         String strDate = dateFormat.format(dt);
         return strDate;
@@ -113,9 +114,24 @@ public class MainActivity extends AppCompatActivity {
         return start + (int)Math.round(Math.random() * (end - start));
     }
 
+    public void populateScoreScreenFromIntent() {
+        ScoreItem scoreItemDetail = (ScoreItem) getIntent().getSerializableExtra("ScoreItem");
+        System.out.println("Fingers crossed received: " + scoreItemDetail.name);
+
+        Date detailDate = new Date(scoreItemDetail.timestamp);
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss", Locale.ENGLISH);
+        String strDate = dateFormat.format(detailDate);
+
+        TextView dateLabel=(TextView)findViewById(R.id.dateLabel);
+        TextView nameLabel=(TextView)findViewById(R.id.nameLabel);
+        TextView scoreLabel=(TextView)findViewById(R.id.scoreLabel);
+
+        dateLabel.setText(strDate);
+        nameLabel.setText(scoreItemDetail.name);
+        scoreLabel.setText(Integer.toString(scoreItemDetail.score) + "%");
+    }
+
     public void populateScoreScreen() {
-        ScoreItem detailItem = (ScoreItem) getIntent().getSerializableExtra("ScoreItem");
-        System.out.println("Fingers crossed received: " + detailItem.name);
         int score = randBetween(0,100);
         String scoreText = Integer.toString(score) + "%";
         System.out.println("score: " + Integer.toString(score));
@@ -129,7 +145,6 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("date:" + date);
 
         Button mButton=(Button)findViewById(R.id.showScoreButton);
-        mButton.setText("abc123");
 
         TextView dateLabel=(TextView)findViewById(R.id.dateLabel);
         TextView nameLabel=(TextView)findViewById(R.id.nameLabel);
@@ -138,8 +153,5 @@ public class MainActivity extends AppCompatActivity {
         dateLabel.setText(date);
         nameLabel.setText(name[nameIndex]);
         scoreLabel.setText(scoreText);
-
     }
-
-
 }

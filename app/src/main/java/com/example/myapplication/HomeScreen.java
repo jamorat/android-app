@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -65,6 +66,22 @@ public class HomeScreen extends AppCompatActivity {
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayList);
         listView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                showDetail(position);
+                System.out.println("Show scores");
+            }
+        });
+    }
+
+    public void showDetail(int position){
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("ScoreItem", scoreData.get(position));
+        startActivity(intent);
+        System.out.println("Show detail");
+
     }
 
     public void showScoresButtonPressed(View v) {
@@ -72,6 +89,4 @@ public class HomeScreen extends AppCompatActivity {
         startActivity(intent);
         System.out.println("Show scores");
     }
-
-
 }

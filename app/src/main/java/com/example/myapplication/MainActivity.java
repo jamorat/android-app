@@ -114,6 +114,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void populateScoreScreen() {
+        ScoreItem detailItem = (ScoreItem) getIntent().getSerializableExtra("ScoreItem");
+        System.out.println("Fingers crossed received: " + detailItem.name);
         int score = randBetween(0,100);
         String scoreText = Integer.toString(score) + "%";
         System.out.println("score: " + Integer.toString(score));

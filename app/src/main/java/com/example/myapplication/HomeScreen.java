@@ -11,13 +11,17 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Locale;
 
 public class HomeScreen extends AppCompatActivity {
     ListView listView;
@@ -48,7 +52,12 @@ public class HomeScreen extends AppCompatActivity {
         String[]scores = {};
         arrayList = new ArrayList<>();
         for(ScoreItem item : scoreData){
-            arrayList.add(String.format("%s %2d %2d",item.name,item.score, item.timestamp));
+            Date dt = new Date(item.timestamp);
+            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss", Locale.US);
+
+            String strDate = dateFormat.format(dt);
+
+            arrayList.add(String.format("%s  %s%%\n%s",item.name,item.score, strDate));
             System.out.println("iteration : " + item.name);
         }
         System.out.println("state of array list : " + arrayList);
@@ -63,4 +72,6 @@ public class HomeScreen extends AppCompatActivity {
         startActivity(intent);
         System.out.println("Show scores");
     }
+
+
 }

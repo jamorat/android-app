@@ -9,6 +9,13 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.Locale;
+import java.util.Random;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -26,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        populateScoreScreen();
     }
 
     @Override
@@ -53,4 +62,53 @@ public class MainActivity extends AppCompatActivity {
     public void showScore(View v) {
         System.out.println("button has been clicked");
     }
+
+    String[] name = {
+            "Kardashian",
+            "Beyonce",
+            "Kanye",
+            "Justin Bieber",
+            "Khloe Kardashian",
+            "Taylor Swift"
+    };
+
+    //Random date code, cut and pasted with American pride from
+    //stackoverflow.com/questions/3985392/generate-random-date-of-birth
+    public static String randomDate() {
+        Random rnd;
+        Date    dt;
+        long    ms;
+
+// Get a new random instance, seeded from the clock
+        rnd = new Random();
+        ms = -946771200000L + (Math.abs(rnd.nextLong()) % (70L * 365 * 24 * 60 * 60 * 1000));
+
+// Construct a date
+        dt = new Date(ms);
+//        DateFormat dateFormat = new SimpleDateFormat(string: "dd/mm/yyyy hh:mm:ss");
+        DateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy hh:mm:ss", Locale.ENGLISH);
+        String strDate = dateFormat.format(dt);
+        return strDate;
+
+
+    }
+
+    public static int randBetween(int start, int end) {
+        return start + (int)Math.round(Math.random() * (end - start));
+    }
+
+    public void populateScoreScreen() {
+        int score = randBetween(0,100);
+        System.out.println("score: " + Integer.toString(score));
+
+        int nameIndex = randBetween(0, name.length);
+        System.out.println(nameIndex);
+
+        System.out.println(name[nameIndex]);
+
+        String date = randomDate();
+        System.out.println("date:" + date);
+    }
+
+
 }

@@ -146,6 +146,17 @@ public class HomeScreen extends AppCompatActivity {
         };
 
 
+
+        //Males
+        scoreData.add(new ScoreItem("Ryan",63,12345678993223L));
+        scoreData.add(new ScoreItem("Sam",86,1536442851000L));
+        scoreData.add(new ScoreItem("Joey",78,1546442992000L));
+
+        //Females
+        scoreData.add(new ScoreItem("Melissa",91,1540341851000L));
+        scoreData.add(new ScoreItem("Jess",93,1540341751000L));
+        scoreData.add(new ScoreItem("Carly",89,1540341651000L));
+
     }
 
     public void showScoresButtonPressed(View v) {

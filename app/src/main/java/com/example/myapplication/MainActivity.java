@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
         String scoreText = Integer.toString(score) + "%";
         System.out.println("score: " + Integer.toString(score));
 
-        int nameIndex = randBetween(0, name.length);
+        int nameIndex = randBetween(0, name.length-1);
         System.out.println(nameIndex);
 
         System.out.println(name[nameIndex]);

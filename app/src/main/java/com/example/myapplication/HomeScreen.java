@@ -7,7 +7,12 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.ListView;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -15,13 +20,24 @@ import java.util.List;
 import java.util.ListIterator;
 
 public class HomeScreen extends AppCompatActivity {
-
+    ListView listView;
+    ArrayAdapter<String> adapter;
+    ArrayList<String> arrayList;
+    EditText editText;
     List<ScoreItem> scoreData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
+
+        listView = (ListView) findViewById(R.id.ScoreListView);
+        String[]scores = {"a1","b2","c3"};
+        arrayList = new ArrayList<>(Arrays.asList(scores));
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, scores);
+        listView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+
         scoreData = new List<ScoreItem>() {
 
             @Override

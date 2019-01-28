@@ -1,0 +1,40 @@
+[
+      {
+        "gender": "male",
+        "name": "matt",
+        "score": 88,
+        "date_created": 1536341851000
+      },
+      {
+        "gender": "male",
+        "name": "oaks",
+        "score": 67,
+        "date_created": 1526442851000
+      },
+      {
+        "gender": "male",
+        "name": "tony",
+        "score": 100,
+        "date_created": 1536442992000
+      }
+  ,
+  {
+        "gender": "female",
+        "name": "julia",
+        "score": 95,
+        "date_created": 1510341851000
+      },
+      {
+        "gender": "female",
+        "name": "kelsey",
+        "score": 38,
+        "date_created": 1510341651000
+      },
+      {
+        "gender": "female",
+        "name": "ellen",
+        "score": 0,
+        "date_created": 1510341751000
+      }
+
+]

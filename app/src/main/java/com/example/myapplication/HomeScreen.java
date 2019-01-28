@@ -17,6 +17,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -38,14 +40,51 @@ public class HomeScreen extends AppCompatActivity {
         scoreData = new ArrayList<ScoreItem>();
 
         //Males
-        scoreData.add(new ScoreItem("Ryan",63,12345678993223L));
-        scoreData.add(new ScoreItem("Sam",86,1536442851000L));
-        scoreData.add(new ScoreItem("Joey",78,1546442992000L));
+        scoreData.add(new ScoreItem("MALES",0,0, "male"));
+
+        scoreData.add(new ScoreItem("Ryan",63,12345678993223L, "male"));
+        scoreData.add(new ScoreItem("Sam",86,1536442851000L,"male"));
+        scoreData.add(new ScoreItem("Joey",78,1546442992000L,"male"));
 
         //Females
-        scoreData.add(new ScoreItem("Melissa",91,1540341851000L));
-        scoreData.add(new ScoreItem("Jess",93,1540341751000L));
-        scoreData.add(new ScoreItem("Carly",89,1540341651000L));
+        scoreData.add(new ScoreItem("FEMALES",0,0, "female"));
+
+        scoreData.add(new ScoreItem("Melissa",91,1540341851000L,"female"));
+        scoreData.add(new ScoreItem("Jess",93,1540341751000L, "female"));
+        scoreData.add(new ScoreItem("Carly",89,1540341651000L, "female"));
+
+        System.out.println("before sort down");
+
+        for(ScoreItem item : scoreData){
+
+            System.out.println(new String("beforesort : %s %s" + item.name + " " + item.timestamp));
+        }
+        System.out.println("before sort up");
+
+
+        Collections.sort(scoreData, new Comparator<ScoreItem>() {
+            @Override
+            public int compare(ScoreItem o1, ScoreItem o2) {
+                return Long.compare(Long.parseLong(String.valueOf(o1.timestamp)),
+                        Long.parseLong(String.valueOf(o2.timestamp)));
+            }
+        });
+
+        Collections.sort(scoreData, new Comparator<ScoreItem>() {
+            @Override
+            public int compare(ScoreItem o1, ScoreItem o2) {
+                return o1.gender.compareTo(o2.gender);
+            }
+        });
+
+
+
+        System.out.println("after sort down");
+        for(ScoreItem item : scoreData){
+
+            System.out.println(new String("beforesort : %s %s" + item.name + " " + item.timestamp + " " + item.gender));
+        }
+        System.out.println("after sort up");
 
         listView = (ListView) findViewById(R.id.ScoreListView);
         System.out.println("this is scoredata item name: " + scoreData.get(0).name);
@@ -53,12 +92,19 @@ public class HomeScreen extends AppCompatActivity {
         String[]scores = {};
         arrayList = new ArrayList<>();
         for(ScoreItem item : scoreData){
-            Date dt = new Date(item.timestamp);
-            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss", Locale.US);
+            if (item.name != "MALES" &&
+                    item.name != "FEMALES") {
+                Date dt = new Date(item.timestamp);
+                DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss", Locale.US);
 
-            String strDate = dateFormat.format(dt);
+                String strDate = dateFormat.format(dt);
 
-            arrayList.add(String.format("%s  %s%%\n%s",item.name,item.score, strDate));
+                arrayList.add(String.format("%s  %s%%\n%s", item.name, item.score, strDate));
+            } else {
+                arrayList.add(item.name);
+            }
+
+
             System.out.println("iteration : " + item.name);
         }
         System.out.println("state of array list : " + arrayList);
@@ -77,11 +123,14 @@ public class HomeScreen extends AppCompatActivity {
     }
 
     public void showDetail(int position){
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("ScoreItem", scoreData.get(position));
-        startActivity(intent);
-        System.out.println("Show detail");
+        if (scoreData.get(position).name != "MALES" &&
+                scoreData.get(position).name != "FEMALES") {
 
+            Intent intent = new Intent(this, MainActivity.class);
+            intent.putExtra("ScoreItem", scoreData.get(position));
+            startActivity(intent);
+            System.out.println("Show detail");
+        }
     }
 
     public void showScoresButtonPressed(View v) {

@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -52,12 +53,6 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-
-
-        ObjectMapper mapper = new ObjectMapper(); // just need one
-        // Got a Java class that data maps to nicely? If so:
-        //Map<String,Object> map = mapper.readValue("https://gist.githubusercontent.com/ryanneuroflow/370d19311602c091928300edd7a40f66/raw/1865ae6004142553d8a6c6ba79ccb511028a2cba/names.json", Map.class);
-
 
         populateScoreScreenFromIntent();
         //populateScoreScreen();

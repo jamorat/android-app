@@ -16,6 +16,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    useLibrary 'org.apache.http.legacy'
 }
 
 dependencies {
@@ -30,5 +31,5 @@ dependencies {
     implementation 'com.fasterxml.jackson.core:jackson-core:2.4.1'
     implementation 'com.fasterxml.jackson.core:jackson-annotations:2.4.1'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.4.1'
-
+    implementation 'org.apache.httpcomponents:httpcore:4.4.1'
 }

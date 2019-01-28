@@ -1,6 +1,8 @@
 package com.example.myapplication;
 
 import android.os.Bundle;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,6 +27,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
@@ -49,6 +52,12 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+
+        ObjectMapper mapper = new ObjectMapper(); // just need one
+        // Got a Java class that data maps to nicely? If so:
+        //Map<String,Object> map = mapper.readValue("https://gist.githubusercontent.com/ryanneuroflow/370d19311602c091928300edd7a40f66/raw/1865ae6004142553d8a6c6ba79ccb511028a2cba/names.json", Map.class);
+
 
         populateScoreScreenFromIntent();
         //populateScoreScreen();

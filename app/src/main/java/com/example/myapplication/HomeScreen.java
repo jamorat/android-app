@@ -25,6 +25,12 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Locale;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
 
 public class HomeScreen extends AppCompatActivity {
     ListView listView;
@@ -138,4 +144,6 @@ public class HomeScreen extends AppCompatActivity {
         startActivity(intent);
         System.out.println("Show scores");
     }
+
+
 }
